@@ -1,27 +1,29 @@
 import com.sun.jdi.Value;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 public class Counter {
     
-    private Integer valueOfCounter = 0;
+    private AtomicInteger valueOfCounter = new AtomicInteger();
     
     public void setCounter(Integer value){
-        valueOfCounter = value;
+        valueOfCounter.set(value);
     }
     
     public Integer getCounter(){
-        return valueOfCounter;
+        return valueOfCounter.get();
     }
     
     public void postCounter(){
-        valueOfCounter += 1;
+        valueOfCounter.incrementAndGet();
     }
     
     public void deleteCounter(Integer subtractionValue){
-        valueOfCounter -= subtractionValue;
+        valueOfCounter.addAndGet(-subtractionValue);
     }
 
     public void clearCounter(){
-        valueOfCounter = 0;
+        valueOfCounter.set(0);
     }
     
 }
